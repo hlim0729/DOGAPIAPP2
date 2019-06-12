@@ -14,7 +14,7 @@ function displayResults(responseJson) {
   if (responseJson.message == "Breed not found") {
     alert('That breed was not found, please try again with exact breed name.');
   } else {
-    $('.results').html(`<h2>Look at this dog!</h2>`);
+    $('.results').html(`<h2> adorable dog pic!</h2>`);
 
     $('.results').append(
       `<img src="${responseJson.message}" class="results-img" width="400" height="300" margin-top: "30">`);
