@@ -1,29 +1,36 @@
 'use strict';
 
-function getDogImage() {
-  fetch('https://dog.ceo/api/breed/sheepdog/shetland/images/random')
+function getDogImage(breed) {
+  fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
     .then(response => response.json())
-    .then(responseJson => 
+    .then(responseJson =>
       displayResults(responseJson))
-    .catch(error => alert('Oh no! there are some issues. Please try later again :('));
-}
+      .catch(error => alert('Oh no! there are some issues. Please try later again :('));
+    }
 
 function displayResults(responseJson) {
   console.log(responseJson);
-  $('.results').html(`<h2>Look at this dog!</h2>`);
 
-  let imageUrls = `<img src="${responseJson.message}" alt="Generated dog image" class="loadedImages">`;
-  $('.images').replaceWith(`<div class="images">${imageUrls}</div>`);
+  if (responseJson.message == "Breed not found") {
+    alert('That breed was not found, please try again with exact breed name.');
+  } else {
+    $('.results').html(`<h2>Look at this dog!</h2>`);
+
+    $('.results').append(
+      `<img src="${responseJson.message}" class="results-img" width="400" height="300" margin-top: "30">`);
+    $('.results').removeClass('hidden');
+  }
 }
 
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
-    getDogImage();
+    let breedOfDog = $('input[name="breedOfDog"]').val();
+    getDogImage(breedOfDog);
   });
 }
 
-$(function() {
+$(function () {
   console.log('App loaded! Waiting for submit!');
   watchForm();
 });
