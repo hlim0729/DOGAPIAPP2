@@ -11,7 +11,7 @@ function getDogImage(breed) {
 function displayResults(responseJson) {
   console.log(responseJson);
 
-  if (responseJson.status == 404) {
+  if (responseJson.status == "error") {
     alert('That breed was not found, please try again with exact breed name.');
   } else {
     $('.results').html(`<h2>adorable dog pic!</h2>`);
