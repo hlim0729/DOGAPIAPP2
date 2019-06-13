@@ -5,7 +5,7 @@ function getDogImage(breed) {
     .then(response => response.json())
     .then(responseJson =>
       displayResults(responseJson))
-      .catch(error => alert('Oh no! there are some issues. Please try later again :('));
+      .catch(error => alert('Oh no! there are some issues. Please try again later. :('));
     }
 
 function displayResults(responseJson) {
